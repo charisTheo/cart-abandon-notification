@@ -1,4 +1,4 @@
-# cart abandon example
+# Cart Abandon example 🛒
 
 ### Run the web app
 
