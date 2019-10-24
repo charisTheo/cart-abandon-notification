@@ -6,7 +6,7 @@
     "charisTheo <dev@charistheo.io>"
   ],
   "license": "ISC",
-  "homepage": "https://github.com/charisTheo/push-handler",
+  "homepage": "https://github.com/charisTheo/cart-abandon-notification",
   "ignore": [
     "**/.*",
     "node_modules",

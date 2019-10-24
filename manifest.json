@@ -1,6 +1,6 @@
 {
-  "short_name": "Push Example",
-  "name": "Push Example Web App",
+  "short_name": "Cart Abandon",
+  "name": "Cart Abandon Example PWA",
   "icons": [
     {
       "src": "/favicon/favicon.ico",
