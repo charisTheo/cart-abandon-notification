@@ -9,7 +9,8 @@ const plugins = [
   // by the Webpack dev server. We can give it a template file (written in EJS)
   // and it will handle injecting our bundle for us.
   new HtmlWebpackPlugin({
-    template: path.resolve(__dirname, 'src/index.ejs')
+    template: path.resolve(__dirname, 'src/index.ejs'),
+    inlineSource: 'css\/.css$'
   }),
   new CopyWebpackPlugin([
     {
@@ -21,10 +22,6 @@ const plugins = [
       to: path.resolve(__dirname, 'build/img'),
     },
     {
-      from: path.resolve(__dirname, 'css'),
-      to: path.resolve(__dirname, 'build/css'),
-    },
-    {
       from: path.resolve(__dirname, 'favicon'),
       to: path.resolve(__dirname, 'build/favicon'),
     },
@@ -32,24 +29,6 @@ const plugins = [
     'manifest.json'
   ])
 ];
-
-// if (process.env.NODE_ENV === 'dev') {
-//   plugins.push(
-//     {
-//       apply: (compiler) => {
-//         compiler.hooks.afterEmit.tap('AfterEmitPlugin', (compiler) => {
-//           exec(path.resolve(__dirname,'../start-dev-server.sh'), (err, stdout, stderr) => {
-//             if (stdout) process.stdout.write(stdout);
-//             if (stderr) process.stderr.write(stderr);
-//           });
-//         });
-//       }
-//     }
-//   );
-//     // new WebpackShellPlugin({
-//     //   onBuildEnd: [`cd ${path.resolve(__dirname)} && nodemon server.js`]
-//     // })
-// }
 
 module.exports = {
   // Tell Webpack which file kicks off our app.
@@ -90,7 +69,24 @@ module.exports = {
         // If you see a file that ends in .js, just send it to the babel-loader.
         test: /(^@polymer|\.js$)/,
         use: 'babel-loader'
-      }
+      },
+      {
+        test: /\.css$/,
+        use: [
+          {
+            loader: 'style-loader',
+            options: { 
+              insert: 'head',
+              injectType: 'singletonStyleTag'
+            },
+          },
+          "css-loader"
+        ]
+      },
+      {
+        test: /.(jpg|jpeg|png|svg)$/,
+        use: ['file-loader'],
+      },
     ]
   },
   // Enable the Webpack dev server which will build, serve, and reload our

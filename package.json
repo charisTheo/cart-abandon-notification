@@ -6,7 +6,7 @@
   "homepage": "https://charistheo.github.io/cart-abandon-notification",
   "scripts": {
     "start": "webpack-dev-server --open",
-    "build": "webpack",
+    "build": "webpack --mode=production",
     "predeploy": "npm run build",
     "deploy": "gh-pages --dist build/"
   },
@@ -32,7 +32,10 @@
     "webpack-dev-server": "^3.8.1"
   },
   "devDependencies": {
+    "css-loader": "^3.2.0",
+    "file-loader": "^4.2.0",
     "gh-pages": "^2.1.1",
+    "style-loader": "^1.0.0",
     "webpack-cli": "^3.3.9",
     "webpack-shell-plugin": "^0.5.0"
   }

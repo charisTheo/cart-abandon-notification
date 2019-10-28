@@ -2,6 +2,8 @@ if (!global._babelPolyfill) {
 	require('babel-polyfill');
 }
 
+import './../css/main.css';
+
 import '@polymer/paper-card/paper-card';
 import '@polymer/paper-button/paper-button';
 import '@polymer/paper-toolbar/paper-toolbar';
