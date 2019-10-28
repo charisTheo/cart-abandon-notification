@@ -41,7 +41,7 @@ const requestNotification = notificationType => {
     navigator.serviceWorker.getRegistrations().then(async ([ registration ]) => {
         if (!registration) {
             showSnackBar("Push subscription has been deleted or expired.");
-            registration = await navigator.serviceWorker.register('/service-worker.js');
+            registration = await navigator.serviceWorker.register('./service-worker.js');
             await subscribeToPushManager(registration);
         }
         const permission = await registration.pushManager.permissionState({userVisibleOnly: true});
