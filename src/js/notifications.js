@@ -55,6 +55,7 @@ const requestNotification = notificationType => {
                 `${API_URL}/user/push/${notificationType}`, 
                 { 
                     method: 'GET',
+                    credentials: 'include'
                 }
             );
             switch (response.status) {
@@ -102,6 +103,7 @@ const subscribeToPushManager = async registration => {
     try {
         await fetch(`${API_URL}/user/push-subscription/`, {
             method: 'POST',
+            credentials: 'include',
             body: JSON.stringify({ subscriptionEndpoint: subscription.endpoint }),
             headers: {
                 'content-type': 'application/json'

@@ -103,7 +103,8 @@ const registerServiceWorker = () => {
 
 const checkout = async event => {
     const response = await fetch(`${API_URL}/checkout`, { 
-        method: 'GET', 
+        method: 'GET',
+        credentials: 'include'
     });
     const items = await response.json();
     console.log("checkout: items", items);

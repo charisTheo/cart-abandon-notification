@@ -43,6 +43,7 @@ const addToCart = async (event, forceDb) => {
         try {
             const response = await fetch(`${API_URL}/cart`, { 
                 method: 'POST', 
+                credentials: 'include',
                 body: JSON.stringify({items: [item]}),
                 headers: {'Content-Type': 'application/json'}
             });
@@ -87,6 +88,7 @@ const deleteItemFromCart = async (item, forceDb) => {
                 `${API_URL}/cart`,
                 { 
                     method: 'DELETE',
+                    credentials: 'include',
                     body: JSON.stringify({items: [item]}),
                     headers: {'Content-Type': 'application/json'}
                 }
@@ -135,7 +137,10 @@ const removeAllItemsDescriptionsFromShoppingCart = () => {
 }
 
 const clearShoppingCart = async () => {
-    const response = await fetch(`${API_URL}/cart/all`, { method: 'DELETE' });
+    const response = await fetch(`${API_URL}/cart/all`, {
+        method: 'DELETE',
+        credentials: 'include'
+    });
     const items = await response.json();
     
     if (response.status === 200) {
