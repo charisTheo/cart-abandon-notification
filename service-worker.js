@@ -50,7 +50,7 @@ self.addEventListener('notificationclick', function(event) {
       const { items } = data;
 
       event.waitUntil(
-        clients.openWindow(`/?checkout=${true}&items=${encodeURIComponent(JSON.stringify(items))}`)
+        clients.openWindow(`/cart-abandon-notification/?checkout=${true}&items=${encodeURIComponent(JSON.stringify(items))}`)
       );
     }
 
