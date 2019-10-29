@@ -7,6 +7,7 @@ import {
     getAllItemsInObjectStore
 } from "./indexDB";
 
+// const API_URL = 'http://localhost:3000';
 const API_URL = 'https://ecommerce-pwa.herokuapp.com';
 const numberOfCartItemsEl = document.getElementById('number-of-cart-items');
 const cartItemsContainer = document.getElementById('cart-items-container');
@@ -163,7 +164,8 @@ const initialiseNumberOfCartItems = async forceDb => {
             const response = await fetch(
                 `${API_URL}/cart`, 
                 { 
-                    method: 'GET'
+                    method: 'GET',
+                    credentials: 'include'
                 }
             );
             const cartItems = await response.json();
