@@ -97,7 +97,7 @@ const togglePageVisibilityPush = () => pageVisibilityPushIsEnabled = !pageVisibi
 
 const registerServiceWorker = () => {
     if ('serviceWorker' in navigator) {
-        navigator.serviceWorker.register('./service-worker.js', { scope: '/cart-abandon-notification' });
+        navigator.serviceWorker.register('./service-worker.js', { scope: '/cart-abandon-notification/' });
     }
 }
 
