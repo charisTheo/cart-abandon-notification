@@ -253,6 +253,12 @@ paper-icon-item paper-icon-button {
     text-align: right;
 }
 
+@media (max-width: 320px) {
+    #snackbar {
+        left: calc(50% - 150px);
+        width: 280px;
+    }
+}
 @media (min-width: 410px) {
     #snackbar {
         left: calc(50% - 190px);

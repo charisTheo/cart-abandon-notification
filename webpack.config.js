@@ -1,8 +1,9 @@
-var HtmlWebpackPlugin = require('html-webpack-plugin');
-var CopyWebpackPlugin = require('copy-webpack-plugin');
-// var WebpackShellPlugin = require('webpack-shell-plugin');
-// var exec = require('child_process').exec;
-var path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
+const { InjectManifest } = require('workbox-webpack-plugin');
+// const WebpackShellPlugin = require('webpack-shell-plugin');
+// const exec = require('child_process').exec;
+const path = require('path');
 
 const plugins = [
   // This plugin will generate an index.html file for us that can be used
@@ -27,7 +28,8 @@ const plugins = [
     },
     'service-worker.js',
     'manifest.json'
-  ])
+  ]),
+  new InjectManifest({swSrc: 'service-worker.js'})
 ];
 
 module.exports = {
