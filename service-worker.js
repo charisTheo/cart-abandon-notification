@@ -1,5 +1,4 @@
 // https://developers.google.com/web/tools/workbox/guides/configure-workbox
-importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 if (workbox) {
   console.log(`Yay! Workbox is loaded 🎉`);
@@ -7,7 +6,8 @@ if (workbox) {
   console.log(`Boo! Workbox didn't load 😬`);
 }
 
-// workbox.precaching.precacheAndRoute(['/'], 'GET');
+workbox.precaching.precacheAndRoute(self.__precacheManifest || []);
+
 // workbox.routing.registerRoute(
 //   /\.(?:html|js|css|webp|png|jpg|svg|ico)$/,
 //   new workbox.strategies.StaleWhileRevalidate()
