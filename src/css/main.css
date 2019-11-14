@@ -17,7 +17,6 @@ body {
     position: relative;
     margin: 0;
     padding: 0;
-    font-family: 'Open Sans', sans-serif;
     color: black;
     text-align: center;
     background-image: url("./../../img/floating-cogs.svg");
@@ -39,6 +38,14 @@ paper-toolbar > .title {
     margin: 0;
 }
 
+#fork-me-banner {
+    min-width: 48px;
+    min-height: 48px;
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+#fork-me-banner,
 #fork-me-banner > svg {
     height: var(--paper-toolbar-height, 64px);
     width: var(--paper-toolbar-height, 64px);
@@ -188,6 +195,13 @@ paper-toolbar paper-button {
 #snackbar.show {
     bottom: 30px;
 }
+#snackbar .snackbar-refresh-button {
+    color: var(--google-blue-300); 
+    font-size: 17px;
+    margin: 0;
+    padding: 5px 9px;
+    text-decoration: none;
+}
 
 .shopping-cart-button-container {
     margin-right: 40px;
@@ -266,6 +280,7 @@ paper-icon-item paper-icon-button {
     }
 }
 @media (max-width: 600px) {
+    #fork-me-banner,
     #fork-me-banner > svg {
         height: var(--calculated-paper-toolbar-sm-height);
         width: var(--calculated-paper-toolbar-sm-height);
@@ -281,5 +296,17 @@ paper-icon-item paper-icon-button {
     }
     .shopping-cart-button-container {
         margin-right: 60px;
+    }
+}
+
+@media all and (display-mode: browser) {
+    body {
+        font-family: 'Open Sans', sans-serif;
+    }
+}
+    /* * If launched in standalone mode use system fonts */
+@media all and (display-mode: standalone) {
+    body {
+        font-family: "system-ui", "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
     }
 }

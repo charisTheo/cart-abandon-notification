@@ -8,20 +8,21 @@ import {
 const API_URL = 'https://ecommerce-pwa.herokuapp.com';
 const NOTIFICATIONS_ACTIVE_URL = './img/notifications-active.svg';
 const NOTIFICATIONS_NONE_URL = './img/notifications-none.svg';
+const SERVICE_WORKER_SCOPE = window.location.href.match('localhost') ? '/' : '/cart-abandon-notification/';
 const VAPID_PUBLIC_KEY = 'BCvnBFnsPt6MPzwX_LOgKqVFG5ToFJ5Yl0qDfwrT-_lqG0PqgwhFijMq_E-vgkkLli7RWHZCYxANy_l0oxz0Nzs';
 
 const notificationsRequestButton = document.getElementById('notifications-request-button');
 
 // * Possible values: 'prompt', 'denied', or 'granted'
 const getNotificationPermission = async () => {
-    const registration = await navigator.serviceWorker.getRegistration('/cart-abandon-notification/');
+    const registration = await navigator.serviceWorker.getRegistration(SERVICE_WORKER_SCOPE);
     const permission = await registration.pushManager.permissionState({ userVisibleOnly: true });
     return permission;
 }
 
 // ! ask for permission only when the user clicks
 const requestNotificationPermission = () => {
-    navigator.serviceWorker.getRegistration('/cart-abandon-notification/').then(registration => {
+    navigator.serviceWorker.getRegistration(SERVICE_WORKER_SCOPE).then(registration => {
         registration.pushManager.permissionState({userVisibleOnly: true}).then(permission => {
             // Possible values are 'prompt', 'denied', or 'granted'
             if (permission === "prompt" || permission === "granted") {
@@ -38,10 +39,10 @@ const requestNotificationPermission = () => {
 }
 
 const requestNotification = notificationType => {
-    navigator.serviceWorker.getRegistration('/cart-abandon-notification/').then(async registration => {
+    navigator.serviceWorker.getRegistration(SERVICE_WORKER_SCOPE).then(async registration => {
         if (!registration) {
             showSnackBar("Push subscription has been deleted or expired.");
-            registration = await navigator.serviceWorker.register('./service-worker.js', { scope: '/cart-abandon-notification/' });
+            registration = await navigator.serviceWorker.register('./service-worker.js', { scope: SERVICE_WORKER_SCOPE });
             await subscribeToPushManager(registration);
         }
         const permission = await registration.pushManager.permissionState({userVisibleOnly: true});
